@@ -10,9 +10,11 @@ const Home = () => {
   const [order, setOrder] = useState("relevance");
   const [books, setBooks] = useState<BookItem[]>([]);
   const [totalBooks, setTotalBooks] = useState(0);
+  const [loading, setLoading] = useState(false);
   let startIndex = 0;
 
   const handleSearch = async () => {
+    setLoading(true);
     const API_KEY = "AIzaSyAlD1Eh8caasFRVd1XYkn37HiAdiaf9GTs";
     let API_URL = `https://www.googleapis.com/books/v1/volumes?q=${searchText}&startIndex=${startIndex}&maxResults=30&orderBy=${order}`;
 
@@ -29,6 +31,7 @@ const Home = () => {
       setBooks(items);
     }
     setTotalBooks(totalItems);
+    setLoading(false);
   };
 
   const handleLoadMore = () => {
@@ -79,27 +82,35 @@ const Home = () => {
       </div>
       <p className="total__books">{`Total books found: ${totalBooks}`}</p>
       <div className="books__list">
-        {books?.map((book) => (
-          <Link href={`/book/${book.id}`} className="book__item" key={book.id}>
-            <Image
-              src={book.volumeInfo.imageLinks?.smallThumbnail}
-              width={200}
-              height={220}
-              alt="book_image"
-            />
-            <div className="book__info">
-              <p className="book__info_title">{book.volumeInfo.title}</p>
-              <p className="book__info_category">
-                <span className="info">Category: </span>
-                {book.volumeInfo.categories?.[0]}
-              </p>
-              <p className="book__info_authors">
-                <span className="info">Authors: </span>
-                {book.volumeInfo.authors?.join(", ")}
-              </p>
-            </div>
-          </Link>
-        ))}
+        {loading ? (
+          <h2 className="loader">Loading...</h2>
+        ) : (
+          books?.map((book) => (
+            <Link
+              href={`/book/${book.id}`}
+              className="book__item"
+              key={book.id}
+            >
+              <Image
+                src={book.volumeInfo.imageLinks?.smallThumbnail}
+                width={200}
+                height={220}
+                alt="book_image"
+              />
+              <div className="book__info">
+                <p className="book__info_title">{book.volumeInfo.title}</p>
+                <p className="book__info_category">
+                  <span className="info">Category: </span>
+                  {book.volumeInfo.categories?.[0]}
+                </p>
+                <p className="book__info_authors">
+                  <span className="info">Authors: </span>
+                  {book.volumeInfo.authors?.join(", ")}
+                </p>
+              </div>
+            </Link>
+          ))
+        )}
       </div>
       {books.length < totalBooks && (
         <button className="load__btn btn" onClick={handleLoadMore}>

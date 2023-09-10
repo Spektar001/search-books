@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 .book__search:focus {
-  border: 1px solid #164f94;
+  border: 1px solid #b38455;
   transition: all 0.3s ease;
 }
 
@@ -47,7 +47,7 @@
   padding: 5px;
 }
 .books__category:hover {
-  border: 1px solid #164f94;
+  border: 1px solid #b38455;
   transition: all 0.3s ease;
 }
 
@@ -59,12 +59,12 @@
   padding: 5px;
 }
 .books__order:hover {
-  border: 1px solid #164f94;
+  border: 1px solid #b38455;
   transition: all 0.3s ease;
 }
 
 .btn {
-  background-color: #164f94;
+  background-color: #cc8237;
   border-radius: 5px;
   color: #fff;
   font-size: 16px;
@@ -73,7 +73,7 @@
   text-transform: uppercase;
 }
 .btn:hover {
-  background-color: #3b8df1;
+  background-color: #e9ac6f;
   transition: all 0.3s ease;
 }
 
@@ -126,4 +126,10 @@
 
 .book__info_authors {
   width: 240px;
+}
+
+.loader {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 32px;
 }
