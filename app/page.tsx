@@ -1,8 +1,7 @@
 "use client";
-import "./page.css";
 import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import Books from "./components/Books/Books";
+import "./page.css";
 
 const Home = () => {
   const [searchText, setSearchText] = useState("");
@@ -81,37 +80,11 @@ const Home = () => {
         </button>
       </div>
       <p className="total__books">{`Total books found: ${totalBooks}`}</p>
-      <div className="books__list">
-        {loading ? (
-          <h2 className="loader">Loading...</h2>
-        ) : (
-          books?.map((book) => (
-            <Link
-              href={`/book/${book.id}`}
-              className="book__item"
-              key={book.id}
-            >
-              <Image
-                src={book.volumeInfo.imageLinks?.smallThumbnail}
-                width={200}
-                height={220}
-                alt="book_image"
-              />
-              <div className="book__info">
-                <p className="book__info_title">{book.volumeInfo.title}</p>
-                <p className="book__info_category">
-                  <span className="info">Category: </span>
-                  {book.volumeInfo.categories?.[0]}
-                </p>
-                <p className="book__info_authors">
-                  <span className="info">Authors: </span>
-                  {book.volumeInfo.authors?.join(", ")}
-                </p>
-              </div>
-            </Link>
-          ))
-        )}
-      </div>
+      {loading ? (
+        <h2 className="loader">Loading...</h2>
+      ) : (
+        <Books books={books} />
+      )}
       {books.length < totalBooks && (
         <button className="load__btn btn" onClick={handleLoadMore}>
           Load More

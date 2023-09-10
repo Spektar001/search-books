@@ -1,0 +1,44 @@
+.books__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.book__item {
+  background-color: #ececec;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 260px;
+  min-height: 315px;
+}
+.book__item:hover {
+  box-shadow: 0px 0px 10px 3px #808080;
+  transition: all 0.5s ease;
+}
+
+.book__info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #000;
+}
+
+.book__info_title {
+  text-align: center;
+  font-weight: 700;
+  width: 240px;
+}
+
+.info {
+  font-weight: 500;
+}
+
+.book__info_authors {
+  width: 240px;
+}
