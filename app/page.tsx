@@ -38,19 +38,19 @@ const Home = () => {
     handleSearch();
   };
 
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleSearch();
+  };
+
   return (
     <div className="books__wrapper">
-      <div className="search__bar">
+      <form className="search__bar" onSubmit={handleFormSubmit}>
         <input
           className="book__search"
           type="search"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSearch();
-            }
-          }}
         />
         <div className="select__bar">
           <select
@@ -75,10 +75,10 @@ const Home = () => {
             <option value="newest">Newest</option>
           </select>
         </div>
-        <button className="search__btn btn" onClick={handleSearch}>
+        <button className="search__btn btn" type="submit">
           Search
         </button>
-      </div>
+      </form>
       <p className="total__books">{`Total books found: ${totalBooks}`}</p>
       {loading ? (
         <h2 className="loader">Loading...</h2>
