@@ -1,0 +1,27 @@
+.book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+
+.book__title {
+  font-weight: 700;
+  font-size: 32px;
+  text-align: center;
+}
+
+.book__info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 18px;
+  width: 100%;
+}
+
+.info {
+  font-weight: 500;
+  font-size: 20px;
+}
