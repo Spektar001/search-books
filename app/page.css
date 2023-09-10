@@ -13,6 +13,16 @@
   justify-content: center;
   gap: 10px;
 }
+@media (max-width: 630px) {
+  .search__bar {
+    flex-direction: column;
+  }
+}
+
+.select__bar {
+  display: flex;
+  gap: 10px;
+}
 
 .book__search {
   border: 1px solid #d0cfce;
@@ -21,7 +31,7 @@
   height: 30px;
   outline: none;
   padding: 0 10px;
-  width: 300px;
+  width: 100%;
   cursor: pointer;
 }
 .book__search:focus {
