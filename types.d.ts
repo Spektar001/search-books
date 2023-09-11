@@ -5,6 +5,7 @@ interface RootBook {
 }
 
 interface BookItem {
+	name: any
   kind: string
   id: string
   etag: string

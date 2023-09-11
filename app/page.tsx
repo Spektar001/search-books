@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Books from "./components/Books/Books";
+import Search from "./components/Search/Search";
 import "./page.css";
 
 const Home = () => {
@@ -45,40 +46,15 @@ const Home = () => {
 
   return (
     <div className="books__wrapper">
-      <form className="search__bar" onSubmit={handleFormSubmit}>
-        <input
-          className="book__search"
-          type="search"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <div className="select__bar">
-          <select
-            className="books__category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="all">All</option>
-            <option value="art">Art</option>
-            <option value="biography">Biography</option>
-            <option value="computers">Computers</option>
-            <option value="history">History</option>
-            <option value="medical">Medical</option>
-            <option value="poetry">Poetry</option>
-          </select>
-          <select
-            className="books__order"
-            value={order}
-            onChange={(e) => setOrder(e.target.value)}
-          >
-            <option value="relevance">Relevance</option>
-            <option value="newest">Newest</option>
-          </select>
-        </div>
-        <button className="search__btn btn" type="submit">
-          Search
-        </button>
-      </form>
+      <Search
+        searchText={searchText}
+        setSearchText={setSearchText}
+        category={category}
+        setCategory={setCategory}
+        order={order}
+        setOrder={setOrder}
+        handleFormSubmit={handleFormSubmit}
+      />
       <p className="total__books">{`Total books found: ${totalBooks}`}</p>
       {loading ? (
         <h2 className="loader">Loading...</h2>
