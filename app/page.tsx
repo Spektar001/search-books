@@ -3,6 +3,7 @@ import { useState } from "react";
 import Books from "./components/Books/Books";
 import Search from "./components/Search/Search";
 import "./page.css";
+import { API_KEY } from "./Key/Key";
 
 const Home = () => {
   const [searchText, setSearchText] = useState("");
@@ -13,9 +14,8 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   let startIndex = 0;
 
-  const handleSearch = async () => {
+  const getBooks = async () => {
     setLoading(true);
-    const API_KEY = "AIzaSyAlD1Eh8caasFRVd1XYkn37HiAdiaf9GTs";
     let API_URL = `https://www.googleapis.com/books/v1/volumes?q=${searchText}&startIndex=${startIndex}&maxResults=30&orderBy=${order}`;
 
     if (category !== "all") {
@@ -36,12 +36,12 @@ const Home = () => {
 
   const handleLoadMore = () => {
     startIndex += 30;
-    handleSearch();
+    getBooks();
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleSearch();
+    getBooks();
   };
 
   return (

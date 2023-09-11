@@ -1,91 +1,91 @@
 interface RootBook {
-  kind: string
-  totalItems: number
-  items: BookItem[]
+  kind: string;
+  totalItems: number;
+  items: BookItem[];
 }
 
 interface BookItem {
-	name: any
-  kind: string
-  id: string
-  etag: string
-  selfLink: string
-  volumeInfo: VolumeInfo
-  saleInfo: SaleInfo
-  accessInfo: AccessInfo
-  searchInfo: SearchInfo
+  // name: any;
+  kind: string;
+  id: string;
+  etag: string;
+  selfLink: string;
+  volumeInfo: VolumeInfo;
+  saleInfo: SaleInfo;
+  accessInfo: AccessInfo;
+  searchInfo: SearchInfo;
 }
 
 interface VolumeInfo {
-  title: string
-  authors: string[]
-  publisher: string
-  publishedDate: string
-  description: string
-  industryIdentifiers: IndustryIdentifier[]
-  readingModes: ReadingModes
-  pageCount: number
-  printType: string
-  categories: string[]
-  maturityRating: string
-  allowAnonLogging: boolean
-  contentVersion: string
-  panelizationSummary: PanelizationSummary
-  imageLinks: ImageLinks
-  language: string
-  previewLink: string
-  infoLink: string
-  canonicalVolumeLink: string
+  title: string;
+  authors: string[];
+  publisher: string;
+  publishedDate: string;
+  description: string;
+  industryIdentifiers: IndustryIdentifier[];
+  readingModes: ReadingModes;
+  pageCount: number;
+  printType: string;
+  categories: string[];
+  maturityRating: string;
+  allowAnonLogging: boolean;
+  contentVersion: string;
+  panelizationSummary: PanelizationSummary;
+  imageLinks: ImageLinks;
+  language: string;
+  previewLink: string;
+  infoLink: string;
+  canonicalVolumeLink: string;
 }
 
 interface IndustryIdentifier {
-  type: string
-  identifier: string
+  type: string;
+  identifier: string;
 }
 
 interface ReadingModes {
-  text: boolean
-  image: boolean
+  text: boolean;
+  image: boolean;
 }
 
 interface PanelizationSummary {
-  containsEpubBubbles: boolean
-  containsImageBubbles: boolean
+  containsEpubBubbles: boolean;
+  containsImageBubbles: boolean;
 }
 
 interface ImageLinks {
-  smallThumbnail: string
-  thumbnail: string
+  smallThumbnail: string;
+  thumbnail: string;
 }
 
 interface SaleInfo {
-  country: string
-  saleability: string
-  isEbook: boolean
+  country: string;
+  saleability: string;
+  isEbook: boolean;
 }
 
 interface AccessInfo {
-  country: string
-  viewability: string
-  embeddable: boolean
-  publicDomain: boolean
-  textToSpeechPermission: string
-  epub: Epub
-  pdf: Pdf
-  webReaderLink: string
-  accessViewStatus: string
-  quoteSharingAllowed: boolean
+  country: string;
+  viewability: string;
+  embeddable: boolean;
+  publicDomain: boolean;
+  textToSpeechPermission: string;
+  epub: Epub;
+  pdf: Pdf;
+  webReaderLink: string;
+  accessViewStatus: string;
+  quoteSharingAllowed: boolean;
 }
 
 interface Epub {
-  isAvailable: boolean
+  isAvailable: boolean;
 }
 
 interface Pdf {
-  isAvailable: boolean
-  acsTokenLink: string
+  isAvailable: boolean;
+  acsTokenLink: string;
 }
 
 interface SearchInfo {
-  textSnippet: string
+  textSnippet: string;
 }
