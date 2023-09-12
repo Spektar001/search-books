@@ -1,22 +1,19 @@
+"use client";
 import Image from "next/image";
 import "./page.css";
+import { useAppSelector } from "@/app/store/hooks";
+import { useGetBookByIdQuery } from "@/app/store/books/book.api";
 
-const getBookById = async (id: string): Promise<BookItem> => {
-  const response = await fetch(
-    `https://www.googleapis.com/books/v1/volumes/${id}`
-  );
-  const book = await response.json();
-  return book;
-};
-
-const BookPage = async ({ params }: { params: { id: string } }) => {
-  const book = await getBookById(params.id);
+const BookPage = ({ params }: { params: { id: string } }) => {
+  let itemID = useAppSelector((state) => state.booksSlice.id);
+  itemID = params.id;
+  const { data } = useGetBookByIdQuery(itemID);
 
   return (
     <div className="book">
-      {book.volumeInfo.imageLinks ? (
+      {data?.volumeInfo.imageLinks ? (
         <Image
-          src={book.volumeInfo.imageLinks?.thumbnail}
+          src={data?.volumeInfo.imageLinks?.thumbnail}
           width={450}
           height={550}
           alt="book_img"
@@ -31,19 +28,19 @@ const BookPage = async ({ params }: { params: { id: string } }) => {
           className="book__image"
         />
       )}
-      <h2 className="book__title">{book.volumeInfo.title}</h2>
+      <h2 className="book__title">{data?.volumeInfo.title}</h2>
       <div className="book__info">
         <p className="book__info_category">
           <span className="info">Category: </span>
-          {book.volumeInfo.categories?.join(", ")}
+          {data?.volumeInfo.categories?.join(", ")}
         </p>
         <p className="book__info_authors">
           <span className="info">Authors: </span>
-          {book.volumeInfo.authors?.join(", ")}
+          {data?.volumeInfo.authors?.join(", ")}
         </p>
         <p className="book__info_description">
           <span className="info">Description: </span>
-          {book.volumeInfo.description}
+          {data?.volumeInfo.description}
         </p>
       </div>
     </div>
