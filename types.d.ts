@@ -5,15 +5,8 @@ interface RootBook {
 }
 
 interface BookItem {
-  // name: any;
-  kind: string;
   id: string;
-  etag: string;
-  selfLink: string;
   volumeInfo: VolumeInfo;
-  saleInfo: SaleInfo;
-  accessInfo: AccessInfo;
-  searchInfo: SearchInfo;
 }
 
 interface VolumeInfo {
@@ -58,34 +51,9 @@ interface ImageLinks {
   thumbnail: string;
 }
 
-interface SaleInfo {
-  country: string;
-  saleability: string;
-  isEbook: boolean;
-}
-
-interface AccessInfo {
-  country: string;
-  viewability: string;
-  embeddable: boolean;
-  publicDomain: boolean;
-  textToSpeechPermission: string;
-  epub: Epub;
-  pdf: Pdf;
-  webReaderLink: string;
-  accessViewStatus: string;
-  quoteSharingAllowed: boolean;
-}
-
-interface Epub {
-  isAvailable: boolean;
-}
-
-interface Pdf {
-  isAvailable: boolean;
-  acsTokenLink: string;
-}
-
-interface SearchInfo {
-  textSnippet: string;
+interface SearchValues {
+  searchValue: string;
+  category: string;
+  order: string;
+  startIndex: number;
 }

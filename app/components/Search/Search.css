@@ -29,6 +29,10 @@
   border: 1px solid #b38455;
   transition: all 0.3s ease;
 }
+.book__search:hover {
+  border: 1px solid #b38455;
+  transition: all 0.3s ease;
+}
 
 .books__category {
   cursor: pointer;

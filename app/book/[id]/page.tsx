@@ -1,13 +1,15 @@
 "use client";
+import { useGetBookByIdQuery } from "@/app/store/books/book.api";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import { setId } from "@/app/store/slice/bookByIdSlice";
 import Image from "next/image";
 import "./page.css";
-import { useAppSelector } from "@/app/store/hooks";
-import { useGetBookByIdQuery } from "@/app/store/books/book.api";
 
 const BookPage = ({ params }: { params: { id: string } }) => {
-  let itemID = useAppSelector((state) => state.booksSlice.id);
-  itemID = params.id;
-  const { data } = useGetBookByIdQuery(itemID);
+  const dispatch = useAppDispatch();
+  dispatch(setId(params.id));
+  let itemId = useAppSelector((state) => state.bookByIdSlice.id);
+  const { data } = useGetBookByIdQuery(itemId);
 
   return (
     <div className="book">

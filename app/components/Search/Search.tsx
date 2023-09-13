@@ -1,38 +1,48 @@
-import { FormEvent } from "react";
+"use client";
+import useSearchBooks from "@/app/hooks/SearchBooks";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import {
+  changeCategory,
+  changeOrder,
+  changeSearchValue,
+  clearStartIndex,
+} from "@/app/store/slice/searchValuesSlice";
+import { useEffect, useRef } from "react";
 import "./Search.css";
 
-type SearchProps = {
-  searchText: string;
-  setSearchText: (text: string) => void;
-  category: string;
-  setCategory: (category: string) => void;
-  order: string;
-  setOrder: (order: string) => void;
-  handleFormSubmit: (e: FormEvent) => void;
-};
+const Search = () => {
+  const dispatch = useAppDispatch();
+  const { values } = useAppSelector((state) => state.searchValuesSlice);
+  const { searchBooks } = useSearchBooks();
+  const firstRender = useRef(true);
 
-const Search = ({
-  searchText,
-  setSearchText,
-  category,
-  setCategory,
-  order,
-  setOrder,
-  handleFormSubmit,
-}: SearchProps) => {
+  function handleFormSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    searchBooks(true);
+  }
+
+  useEffect(() => {
+    if (!firstRender.current) {
+      dispatch(clearStartIndex());
+    } else {
+      firstRender.current = false;
+    }
+  }, [values.category, values.searchValue, values.order]);
+
   return (
     <form className="search__bar" onSubmit={handleFormSubmit}>
       <input
         className="book__search"
         type="search"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+        value={values.searchValue}
+        onChange={(e) => dispatch(changeSearchValue(e.target.value))}
+        placeholder="Search..."
       />
       <div className="select__bar">
         <select
           className="books__category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          value={values.category}
+          onChange={(e) => dispatch(changeCategory(e.target.value))}
         >
           <option value="all">All</option>
           <option value="art">Art</option>
@@ -44,8 +54,8 @@ const Search = ({
         </select>
         <select
           className="books__order"
-          value={order}
-          onChange={(e) => setOrder(e.target.value)}
+          value={values.order}
+          onChange={(e) => dispatch(changeOrder(e.target.value))}
         >
           <option value="relevance">Relevance</option>
           <option value="newest">Newest</option>

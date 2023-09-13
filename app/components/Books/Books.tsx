@@ -1,12 +1,11 @@
+import { useAppSelector } from "@/app/store/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import "./Books.css";
 
-type BooksProps = {
-  books: BookItem[];
-};
+const Books = () => {
+  const { books } = useAppSelector((state) => state.bookSlice);
 
-const Books = ({ books }: BooksProps) => {
   return (
     <div className="books__list">
       {books?.map((book) => (
