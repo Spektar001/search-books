@@ -6,9 +6,13 @@ import "./Books.css";
 const Books = () => {
   const { books } = useAppSelector((state) => state.bookSlice);
 
+  const uniqueBooks = books.filter(
+    (book, index, self) => index === self.findIndex((b) => b.id === book.id)
+  );
+
   return (
     <div className="books__list">
-      {books?.map((book) => (
+      {uniqueBooks?.map((book) => (
         <Link href={`/book/${book.id}`} className="book__item" key={book.id}>
           {book.volumeInfo.imageLinks ? (
             <Image

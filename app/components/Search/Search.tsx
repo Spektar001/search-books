@@ -27,7 +27,7 @@ const Search = () => {
     } else {
       firstRender.current = false;
     }
-  }, [values.category, values.searchValue, values.order]);
+  }, [values.category, values.searchValue, values.order, dispatch]);
 
   return (
     <form className="search__bar" onSubmit={handleFormSubmit}>
@@ -37,6 +37,7 @@ const Search = () => {
         value={values.searchValue}
         onChange={(e) => dispatch(changeSearchValue(e.target.value))}
         placeholder="Search..."
+        required
       />
       <div className="select__bar">
         <select
