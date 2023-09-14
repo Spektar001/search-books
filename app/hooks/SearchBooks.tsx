@@ -22,22 +22,12 @@ const useSearchBooks = () => {
 
   const getBooks = async () => {
     try {
+      let response;
       if (values.category !== "all") {
-        const response = await fetch(baseURLWithCategory);
-        const data = await response.json();
-        const { items, totalItems } = data;
-        items.map((item: BookItem) =>
-          dispatch(
-            addBooks({
-              id: item.id,
-              volumeInfo: item.volumeInfo,
-            })
-          )
-        );
-        dispatch(addCount(totalItems));
-        dispatch(changeStartIndex());
+        response = await fetch(baseURLWithCategory);
       } else {
-        const response = await fetch(baseURL);
+        response = await fetch(baseURL);
+      }
         const data = await response.json();
         const { items, totalItems } = data;
         items.map((item: BookItem) =>
@@ -50,7 +40,6 @@ const useSearchBooks = () => {
         );
         dispatch(addCount(totalItems));
         dispatch(changeStartIndex());
-      }
     } catch (error) {
       console.error(error);
     }
