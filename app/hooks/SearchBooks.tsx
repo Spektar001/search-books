@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { addBooks, addCount, deleteBooks } from "@/app/store/slice/booksSlice";
 import { changeStartIndex } from "@/app/store/slice/searchValuesSlice";
-import { API_KEY } from "../Key/Key";
 
 const useSearchBooks = () => {
   const dispatch = useAppDispatch();
+  const API_KEY = process.env.NEXT_PUBLIC_PUBLICAPI_KEY;
+
   const { values } = useAppSelector((state) => state.searchValuesSlice);
   const baseURL = `https://www.googleapis.com/books/v1/volumes?q=${values.searchValue}&startIndex=${values.startIndex}&maxResults=30&orderBy=${values.order}&key=${API_KEY}`;
 
