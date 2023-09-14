@@ -27,7 +27,7 @@ const Search = () => {
     } else {
       firstRender.current = false;
     }
-  }, [values.category, values.searchValue, values.order, dispatch]);
+  }, [values.category, values.searchValue, values.order]);
 
   return (
     <form className="search__bar" onSubmit={handleFormSubmit}>
